@@ -48,7 +48,7 @@ export COPYFILE_DISABLE=true
 #  ls aliases
 alias ll="ls -l -h"
 alias la="ls -a"
-alias l="ls"
+alias l="ls -G"
 alias lla="ls -a -l"
 alias lm='ls -la | less'
 
