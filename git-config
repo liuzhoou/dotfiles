@@ -28,6 +28,7 @@
 
 [core]
   excludesfile = ~/.gitignore
+	quotepath = false 
 
 [github]
   user = liuzhoou
