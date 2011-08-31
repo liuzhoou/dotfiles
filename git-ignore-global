@@ -2,3 +2,5 @@
 *.py[co]
 *.pbxuser
 *.mode[12]v3
+bin
+gen

@@ -1,7 +1,14 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+## mysql
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/Cellar/mysql/5.5.14/lib
 
+## Sphinx
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+## TextMate
 export EDITOR='mate'
 export GIT_EDITOR='mate -wl1'
 
@@ -13,6 +20,9 @@ shopt -s histappend
 
 ## PATH
 # Put /usr/local/{sbin,bin} first
+export PATH=/usr/local/IDAPro:$PATH
+export PATH=/usr/local/Cellar/mysql51/5.1.58/bin:$PATH
+export PATH=/Applications/eclipse/android-sdk-mac_x86/tools:/Applications/eclipse/android-sdk-mac_x86/platform-tools:$PATH
 export PATH=/usr/local/pgsql/bin:$PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
@@ -194,6 +204,18 @@ function parse_git_branch {
   echo "${remote}${remote_ff}${GREEN}(${branch})${COLOR_NONE}${git_is_dirty}${COLOR_NONE}"
 }
 
+# SVN parse_svn_branch
+function parse_svn_branch {
+  if [ -d '.svn' ]; then
+    ref="$(svn info | grep Root | awk -F/ '{print $NF}' 2> /dev/null)"
+    svn_status="$(svn status 2> /dev/null)"
+    if [[ ${svn_status} ]]; then
+        svn_is_dirty="${RED}${LIGHTNING_BOLT}"
+    fi
+    echo "${GREEN}(${ref})${COLOR_NONE}${svn_is_dirty}${COLOR_NONE}"
+  fi
+}
+
 function setWindowTitle {
   case $TERM in
     *xterm*|ansi)
@@ -207,8 +229,9 @@ function set_prompt {
     homebrew_prompt="${BROWN}Homebrew:${COLOR_NONE} debugging ${HOMEBREW_DEBUG_INSTALL}\n"
 
   git_prompt="$(parse_git_branch)"
+  svn_prompt="$(parse_svn_branch)"
 
-  export PS1="[\w] ${git_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
+  export PS1="[\w] ${git_prompt}${svn_prompt}${COLOR_NONE}\n${homebrew_prompt}\$ "
 
   # Domain is stripped from hostname
   case $HOSTNAME in
