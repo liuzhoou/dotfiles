@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+## java_home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.6.0_27-b07-393.jdk/Contents/Home
+
 ## mysql
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/Cellar/mysql/5.5.14/lib
 
@@ -82,10 +85,18 @@ alias pigs1="du -d1 | sort -nr | cut -f2- | xargs du -hs"
 
 alias gh="gh-pick"
 
-
 alias fhome="figit on -x 1600 -y 1000"
 alias fwork="figit off"
 
+function amacs
+ {
+     # Create the files as needed -- not as good as raw emacs, but acceptable
+     for f in "$@"
+     do
+ 	test -e $f || touch $f
+     done
+     open -a /Applications/Aquamacs.app "$@"
+ }
 
 function show-empty-folders {
     find . -depth -type d -empty
