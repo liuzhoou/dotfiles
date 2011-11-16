@@ -11,6 +11,9 @@ export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/Cellar/mysql/5.5.14/lib
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+## wine
+# export LANG=zh_CN.UTF-8
+
 ## TextMate
 export EDITOR='mate'
 export GIT_EDITOR='mate -wl1'
