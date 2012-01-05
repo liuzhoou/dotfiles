@@ -69,11 +69,11 @@ alias l="ls -G"
 alias lla="ls -a -l"
 alias lm='ls -la | less'
 
-
 ## Aliases
 alias cls='clear'
 alias delpyc="find . -name '*.pyc' -delete"
-alias tree='tree -Ca -I ".git|.svn|*.pyc|*.swp"'
+# alias tree='tree -Ca -I ".git|.svn|*.pyc|*.swp"'
+alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
 alias sizes='du -h -d1'
 
 alias go-bundles="cd ~/Library/Application\ Support/TextMate/Bundles/"

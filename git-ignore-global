@@ -1,6 +1,36 @@
-.DS_Store
-*.py[co]
+# Win
+Thumbs.db
+
+# Mac OS X
+*.DS_Store
+
+# Xcode
 *.pbxuser
 *.mode[12]v3
+*.perspective
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+# Generated files
+*.o
+*.swp
+
+# Python modules
+docs/_build
+*.py[co]
+*.egg-info
+MANIFEST
+dist/
+build/
+
+# kjava
 bin
 gen
+
+# Backup files
+*~.nib
+
+# AptanaStudio
+.project
