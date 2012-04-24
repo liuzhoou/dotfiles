@@ -1,11 +1,21 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+##  Clozure CL
+export CCL_DEFAULT_DIRECTORY=/Users/liuzhou/code/Lisp/ccl
+export PATH=${PATH}:${CCL_DEFAULT_DIRECTORY}/scripts
+
+## Google Cloud Storage
+export PATH=${PATH}:$HOME/gsutil
+
 ## java_home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.6.0_27-b07-393.jdk/Contents/Home
 
 ## mysql
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/Cellar/mysql/5.5.14/lib
+
+## phantomjs
+export PATH=${PATH}:/usr/local/Cellar/phantomjs/1.4.1/bin/
 
 ## Sphinx
 export LC_ALL=en_US.UTF-8
@@ -30,7 +40,8 @@ export PATH=/usr/local/IDAPro:$PATH
 export PATH=/usr/local/Cellar/mysql51/5.1.58/bin:$PATH
 export PATH=/Applications/eclipse/android-sdk-mac_x86/tools:/Applications/eclipse/android-sdk-mac_x86/platform-tools:$PATH
 export PATH=/usr/local/pgsql/bin:$PATH
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
+export NODE_PATH="/usr/local/lib/node_modules"
 
 # bin folders from ~, gems, and Homebrew
 for another_bin in \
@@ -293,4 +304,15 @@ function bman {
 function pgrep {
   local exclude="\.svn|\.git|\.swp|\.coverage|\.pyc|_build"
   find . -maxdepth 1 -mindepth 1 | egrep -v "$exclude" | xargs egrep -lir "$1" | egrep -v "$exclude" | xargs egrep -Hin --color "$1"
+}
+
+function cdf() # cd to finder's front's window's path
+{
+   path="`osascript -e 'tell application "Finder" to set myname to POSIX path of (target of window 1 as alias)' 2>/dev/null`"
+   if [ -n "$path" ]; then
+      echo "cd to $path"
+      cd "$path"
+   else
+      echo "no finder window finded"
+   fi
 }

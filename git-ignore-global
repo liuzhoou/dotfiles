@@ -4,6 +4,8 @@ Thumbs.db
 # Mac OS X
 *.DS_Store
 
+# emacs
+.#*
 # Xcode
 *.pbxuser
 *.mode[12]v3
@@ -34,3 +36,6 @@ gen
 
 # AptanaStudio
 .project
+
+# JetBrains
+.idea/
