@@ -20,7 +20,7 @@
   remaster = rebase master
   rei  = rebase -i master
   sb   = status -sb
-  top  = git rev-parse HEAD
+  top  = rev-parse HEAD
   wip  = commit -a -m 'wip'
 
 [push]

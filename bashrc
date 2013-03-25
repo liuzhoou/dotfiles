@@ -1,21 +1,27 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# ruby gem lib
+export RUBYOPT=rubygems
+
 ##  Clozure CL
-export CCL_DEFAULT_DIRECTORY=/Users/liuzhou/code/Lisp/ccl
-export PATH=${PATH}:${CCL_DEFAULT_DIRECTORY}/scripts
+# export CCL_DEFAULT_DIRECTORY=/Users/liuzhou/code/Lisp/ccl
+# export PATH=${PATH}:${CCL_DEFAULT_DIRECTORY}/scripts
 
 ## Google Cloud Storage
-export PATH=${PATH}:$HOME/gsutil
+# export PATH=${PATH}:$HOME/gsutil
+
+## nginx
+export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 
 ## java_home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.6.0_27-b07-393.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.6.0_27-b07-393.jdk/Contents/Home
 
 ## mysql
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/Cellar/mysql/5.5.14/lib
+# export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/Cellar/mysql/5.5.14/lib
 
 ## phantomjs
-export PATH=${PATH}:/usr/local/Cellar/phantomjs/1.4.1/bin/
+# export PATH=/usr/local/Cellar/phantomjs/1.4.1/bin:${PATH}
 
 ## Sphinx
 export LC_ALL=en_US.UTF-8
@@ -36,12 +42,12 @@ shopt -s histappend
 
 ## PATH
 # Put /usr/local/{sbin,bin} first
-export PATH=/usr/local/IDAPro:$PATH
-export PATH=/usr/local/Cellar/mysql51/5.1.58/bin:$PATH
+# export PATH=/usr/local/IDAPro:$PATH
+# export PATH=/usr/local/Cellar/mysql51/5.1.58/bin:$PATH
 export PATH=/Applications/eclipse/android-sdk-mac_x86/tools:/Applications/eclipse/android-sdk-mac_x86/platform-tools:$PATH
-export PATH=/usr/local/pgsql/bin:$PATH
-export PATH=/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
-export NODE_PATH="/usr/local/lib/node_modules"
+# export PATH=/usr/local/pgsql/bin:$PATH
+# export PATH=/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
+# export NODE_PATH="/usr/local/lib/node_modules"
 
 # bin folders from ~, gems, and Homebrew
 for another_bin in \
@@ -142,6 +148,8 @@ export WORKON_HOME=$HOME/env
 
 export SCALA_HOME=$(brew --prefix scala)/libexec
 export PATH=$SCALA_HOME:$PATH
+# PYTHONPATH
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages:$PATH
 
 ## Custom prompt
 # Colors

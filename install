@@ -22,3 +22,4 @@ relink .gitignore ~/.dotfiles/git-ignore-global
 relink .hgrc ~/.dotfiles/hgrc
 relink .inputrc ~/.dotfiles/inputrc
 relink bin ~/.dotfiles/bin
+# relink .emacs.d ~/.dotfiles/emacs-starter-kit
