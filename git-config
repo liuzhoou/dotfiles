@@ -4,7 +4,7 @@
 
 [color]
   ui = auto
-	diff = auto
+  diff = auto
 
 [alias]
   a    = commit --amend
@@ -28,7 +28,7 @@
 
 [core]
   excludesfile = ~/.gitignore
-	quotepath = false 
+  quotepath = false 
 
 [github]
   user = liuzhoou
