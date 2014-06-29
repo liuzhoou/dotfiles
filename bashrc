@@ -1,64 +1,30 @@
 # If not running interactively, don't do anything
+
 [ -z "$PS1" ] && return
 
-# ruby gem lib
-export RUBYOPT=rubygems
-
-##  Clozure CL
-# export CCL_DEFAULT_DIRECTORY=/Users/liuzhou/code/Lisp/ccl
-# export PATH=${PATH}:${CCL_DEFAULT_DIRECTORY}/scripts
-
-## Google Cloud Storage
-# export PATH=${PATH}:$HOME/gsutil
-
-## nginx
+## path
 export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 
 ## java_home
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.6.0_27-b07-393.jdk/Contents/Home
-
-## mysql
-# export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/Cellar/mysql/5.5.14/lib
-
-## phantomjs
-# export PATH=/usr/local/Cellar/phantomjs/1.4.1/bin:${PATH}
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 
 ## Sphinx
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-## wine
-# export LANG=zh_CN.UTF-8
-
 ## TextMate
 export EDITOR='mate'
 export GIT_EDITOR='mate -wl1'
-
 
 ## History control
 export HISTCONTROL=ignoreboth
 shopt -s histappend
 
-
-## PATH
-# Put /usr/local/{sbin,bin} first
-# export PATH=/usr/local/IDAPro:$PATH
-# export PATH=/usr/local/Cellar/mysql51/5.1.58/bin:$PATH
-export PATH=/Applications/eclipse/android-sdk-mac_x86/tools:/Applications/eclipse/android-sdk-mac_x86/platform-tools:$PATH
-# export PATH=/usr/local/pgsql/bin:$PATH
-# export PATH=/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
-# export NODE_PATH="/usr/local/lib/node_modules"
-
-# bin folders from ~, gems, and Homebrew
-for another_bin in \
-    $HOME/bin \
-    $HOME/bin-local \
-    $HOME/bin/extras \
-    $HOME/.gem/ruby/1.8/bin \
-    "/Library/Application\ Support/VMware\ Fusion"
-do
-    [[ -e $another_bin ]] && export PATH=$another_bin:$PATH
-done
+## android
+export ANDROID_SDK=/Applications/adt-bundle-mac-x86_64-20130729/sdk
+export ANDROID_NDK=/Applications/adt-bundle-mac-x86_64-20130729/ndk
+export ANDROID_HOME=/Applications/adt-bundle-mac-x86_64-20130729/sdk
+export PATH=$PATH:${JAVA_HOME}/bin:${ANDROID_SDK}/platform-tools:${ANDROID_SDK}/tools:${ANDROID_NDK}
 
 if [[ -n `which brew` ]]; then
   # Find a Homebrew-built Python
@@ -89,7 +55,6 @@ alias lm='ls -la | less'
 ## Aliases
 alias cls='clear'
 alias delpyc="find . -name '*.pyc' -delete"
-# alias tree='tree -Ca -I ".git|.svn|*.pyc|*.swp"'
 alias tree='find . -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"'
 alias sizes='du -h -d1'
 
@@ -149,7 +114,8 @@ export WORKON_HOME=$HOME/env
 export SCALA_HOME=$(brew --prefix scala)/libexec
 export PATH=$SCALA_HOME:$PATH
 # PYTHONPATH
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages:$PATH
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages:$PYTHONPATH
+
 
 ## Custom prompt
 # Colors
@@ -176,7 +142,7 @@ LIGHTNING_BOLT="⚡"
 
 
 function parse_git_branch {
-  branch_pattern="^# On branch ([^${IFS}]*)"
+  branch_pattern="On branch ([^[:space:]]*)"
   remote_pattern_ahead="# Your branch is ahead of"
   remote_pattern_behind="# Your branch is behind"
   remote_pattern_ff="# Your branch (.*) can be fast-forwarded."
@@ -197,7 +163,6 @@ function parse_git_branch {
     }
     return
   fi
-
   branch=${BASH_REMATCH[1]}
 
   # Dirty?
@@ -324,3 +289,4 @@ function cdf() # cd to finder's front's window's path
       echo "no finder window finded"
    fi
 }
+
