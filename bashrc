@@ -279,14 +279,14 @@ function pgrep {
   find . -maxdepth 1 -mindepth 1 | egrep -v "$exclude" | xargs egrep -lir "$1" | egrep -v "$exclude" | xargs egrep -Hin --color "$1"
 }
 
-function cdf() # cd to finder's front's window's path
+# cd to finder's front's window's path
+function cdf() 
 {
-   path="`osascript -e 'tell application "Finder" to set myname to POSIX path of (target of window 1 as alias)' 2>/dev/null`"
-   if [ -n "$path" ]; then
-      echo "cd to $path"
-      cd "$path"
+   cdfpath="`osascript -e 'tell application "Finder" to set myname to POSIX path of (target of window 1 as alias)' 2>/dev/null`"
+   if [ -n "$cdfpath" ]; then
+      echo "cd to $cdfpath"
+      cd "$cdfpath"
    else
       echo "no finder window finded"
    fi
 }
-
